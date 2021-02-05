@@ -14,19 +14,7 @@ sudo apt install libsuitesparse-dev libeigen3-dev libboost-all-dev libopencv-dev
 ```
 
 ## 3. Build
-### 3.1 DSO
 ```
-cd dso
-mkdir build
-cd build
-cmake ..
-make -j4
-```
-### 3.1 Pangolin
-```
-cd pangolin
-mkdir build
-cd build
-cmake ..
-cmake --build .
+chmod +x build.sh
+./build.sh
 ```
