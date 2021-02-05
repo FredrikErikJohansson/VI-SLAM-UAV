@@ -1,0 +1,3 @@
+[submodule "dso"]
+	path = dso
+	url = git@github.com:JakobEngel/dso.git
