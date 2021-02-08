@@ -10,7 +10,7 @@ git submodule update --init
 
 ## 2. Dependencies
 ```
-sudo apt install libsuitesparse-dev libeigen3-dev libboost-all-dev libopencv-dev libgl1-mesa-dev libglew-dev cmake pkg-config zlib1g-dev
+sudo apt install libsuitesparse-dev libeigen3-dev libboost-all-dev libopencv-dev libgl1-mesa-dev libglew-dev cmake pkg-config zlib1g-dev libpython2.7-dev
 ```
 
 ## 3. Build
