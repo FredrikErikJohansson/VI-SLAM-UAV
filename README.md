@@ -4,7 +4,7 @@ Master thesis project that aims to evaluate and compare VI-SLAM methods for UAV-
 ## 1. Install
 ```
 git clone https://github.com/FredrikErikJohansson/VI-SLAM-UAV.git
-cd VI-SLAM_UAV
+cd VI-SLAM-UAV
 git submodule update --init
 ```
 
