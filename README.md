@@ -35,7 +35,7 @@ chmod +x build.sh
 * [EuRoC](https://projects.asl.ethz.ch/datasets/doku.php?id=kmavvisualinertialdatasets)
 * [TUM-VI](https://vision.in.tum.de/data/datasets/visual-inertial-dataset)
 
-### 4.1 [LDSO](https://github.com/tum-vision/LDSO/)
+### [4.1 LDSO](https://github.com/tum-vision/LDSO/)
 
 LSDO provides examples for TUM-Mono, Kitti and EuRoC but the datasets can easily be extended in the `examples` folder.
 
@@ -67,7 +67,7 @@ To run LDSO on EuRoC dataset sequence MH_01_easy, execute:
     files=XXXX/EuRoC/MH_01_easy/mav0/cam0/
 ```
 
-### 4.2 [ORB-SLAM3](https://github.com/UZ-SLAMLab/ORB_SLAM3)
+### [4.2 ORB-SLAM3](https://github.com/UZ-SLAMLab/ORB_SLAM3)
 
 ORB-SLAM3 provides examples for the EuRoC and TUM-VI.
 
