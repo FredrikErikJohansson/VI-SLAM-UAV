@@ -1,9 +1,9 @@
-[submodule "dso"]
-	path = dso
-	url = git@github.com:JakobEngel/dso.git
 [submodule "pangolin"]
 	path = pangolin
 	url = git@github.com:stevenlovegrove/Pangolin.git
 [submodule "ORB_SLAM3"]
 	path = ORB_SLAM3
 	url = git@github.com:UZ-SLAMLab/ORB_SLAM3.git
+[submodule "LDSO"]
+	path = LDSO
+	url = git@github.com:tum-vision/LDSO.git
