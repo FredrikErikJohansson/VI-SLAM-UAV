@@ -1,6 +1,6 @@
-echo "Configuring and building DSO ..."
+echo "Configuring and building LDSO ..."
 
-cd dso
+cd LDSO
 mkdir build
 cd build
 cmake ..
