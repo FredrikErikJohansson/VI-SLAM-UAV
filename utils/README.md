@@ -12,3 +12,7 @@ Copy files without any special characters if `???? % <num> = 1`, using:
 Extract colums from csv to new csv:
 * `awk -F"," '{print $1,$2}' in.csv > out.csv` gives `col1 col2`
 * `awk -F"," '{print $1","$2}' in.csv > out.csv` gives `col1,col2`
+* `awk -F"," '{print $1","$2",0.1"}' in.csv > out.csv` gives `col1,col2,0.1`
+
+### Combine two csv files
+* `paste -d"," one.csv two.csv > combined.csv`
