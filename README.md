@@ -30,6 +30,7 @@ chmod +x build.sh
 
 ## 4. Usage
 ### Datasets:
+* [AGZ](http://rpg.ifi.uzh.ch/zurichmavdataset.html)
 * [TUM-Mono](https://vision.in.tum.de/mono-dataset)
 * [Kitti](http://www.cvlibs.net/datasets/kitti/eval_odometry.php)
 * [EuRoC](https://projects.asl.ethz.ch/datasets/doku.php?id=kmavvisualinertialdatasets)
@@ -69,7 +70,14 @@ To run LDSO on EuRoC dataset sequence MH_01_easy, execute:
 
 ### [4.2 ORB-SLAM3](https://github.com/UZ-SLAMLab/ORB_SLAM3)
 
-ORB-SLAM3 provides examples for the EuRoC and TUM-VI.
+ORB-SLAM3 provides examples for the EuRoC and TUM-VI and we have extended it to include AGZ.
+
+#### AGZ:
+Open the script `AGZ_examples.sh` and change `pathDatasetAGZ` to point to the directory where the dataset has been uncompressed. Change which sequences to process (default is set to all). Execute the following script:
+
+```
+./AGZ_examples
+```
 
 #### EuRoC:
 Open the script `euroc_examples.sh` and change `pathDatasetEuroc` to point to the directory where the dataset has been uncompressed. Change which sequences to process (default is set to all). Execute the following script:
