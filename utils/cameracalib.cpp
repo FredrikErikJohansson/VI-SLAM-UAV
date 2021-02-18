@@ -6,7 +6,7 @@
 #include <iostream>
 
 // Defining the dimensions of checkerboard
-int CHECKERBOARD[2]{6,9}; 
+int CHECKERBOARD[2]{6,8}; 
 
 int main() {
 	// Creating vector to store vectors of 3D points for each checkerboard image
@@ -26,7 +26,7 @@ int main() {
 	// Extracting path of individual image stored in a given directory
 	std::vector<cv::String> images;
 	// Path of the folder containing checkerboard images
-	std::string path = "../data/*.png";
+	std::string path = "/home/fredrik/Projects/datasets/AGZ_subset/MAV_Images_Calib/*.png";
 
 	cv::glob(path, images);
 
@@ -61,6 +61,7 @@ int main() {
 			objpoints.push_back(objp);
 			imgpoints.push_back(corner_pts);
 		}
+		else std::cout << "Coulnt find corners" << std::endl;
 
 	cv::imshow("Image",frame);
 	cv::waitKey(0);
