@@ -6,4 +6,4 @@
 	url = git@github.com:FredrikErikJohansson/ORB_SLAM3.git
 [submodule "LDSO"]
 	path = LDSO
-	url = git@github.com:tum-vision/LDSO.git
+	url = git@github.com:FredrikErikJohansson/LDSO.git
