@@ -4,3 +4,6 @@
 [submodule "LDSO"]
 	path = LDSO
 	url = git@github.com:FredrikErikJohansson/LDSO.git
+[submodule "ORB_SLAM3"]
+	path = ORB_SLAM3
+	url = git@github.com:FredrikErikJohansson/ORB_SLAM3.git
