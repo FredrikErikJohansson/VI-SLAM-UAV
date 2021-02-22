@@ -19,3 +19,6 @@ Extract colums from csv to new csv:
 
 ### Compile cameracalib.cpp
 * ``g++ cameracalib.cpp -o cameracalib `pkg-config --cflags --libs opencv` ``
+
+### Extract certain rows from file
+* `awk '0 == NR % <num>' input.SRT >> times.txt`
