@@ -19,6 +19,7 @@ sudo apt install libsuitesparse-dev \
     cmake \
     pkg-config \
     zlib1g-dev \
+    libssl-dev \
     libpython2.7-dev
 ```
 
