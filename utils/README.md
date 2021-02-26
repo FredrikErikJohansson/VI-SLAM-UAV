@@ -22,3 +22,10 @@ Extract colums from csv to new csv:
 
 ### Extract certain rows from file
 * `awk '0 == NR % <num>' input.SRT >> times.txt`
+
+### Data pre-processing for DJI Mavic 2
+LDSO:
+* `./procLDSO.sh /absolute/path/to/dataset example-video`
+
+ORB_SLAM3:
+* `./procORB.sh /absolute/path/to/dataset example-video`
