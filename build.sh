@@ -2,6 +2,14 @@
 BUILD_TYPE=Release
 NUM_PROC=4
 
+echo "Configuring and building Pangolin ..."
+cd pangolin
+mkdir build
+cd build
+cmake ..
+cmake --build .
+cd ../../
+
 echo "Configuring and building Thirdparty/DBoW2 ..."
 
 cd LDSO/thirdparty/DBoW3
@@ -25,15 +33,6 @@ mkdir build
 cd build
 cmake -DCMAKE_BUILD_TYPE=$BUILD_TYPE ..
 make -j$NUM_PROC
-
-cd ../../pangolin
-
-echo "Configuring and building Pangolin ..."
-
-mkdir build
-cd build
-cmake ..
-cmake --build .
 
 cd ../../ORB_SLAM3
 
