@@ -35,5 +35,6 @@ awk '{print sprintf("%.10f", 1000/$1), $2}' shutter2.txt >> shutter3.txt
 paste -d" " names.txt timestamps.txt > combined.txt
 paste -d" " combined.txt shutter3.txt >> times.txt
 sed -i '$d' times.txt
+cp $pwd/camera.txt ./camera.txt
 echo "Finished!"
 rm dates.txt names.txt shutter.txt shutter2.txt shutter3.txt timestamps.txt combined.txt
