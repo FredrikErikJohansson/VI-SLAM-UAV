@@ -29,3 +29,6 @@ LDSO:
 
 ORB_SLAM3:
 * `./procORB.sh /absolute/path/to/dataset example-video`
+
+### Compute mean error of a pointcloud to its ground-truth
+* `./meanError plyExample plyExampleGroundTruth`
