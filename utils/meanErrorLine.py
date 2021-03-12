@@ -25,22 +25,23 @@ plyGT = o3d.io.read_point_cloud(sys.argv[2] + plyGTEnding)
 print("Test:",plyTest)
 print("Ground-truth:",plyGT)
 plyGT_tree = o3d.geometry.KDTreeFlann(plyGT)
-
 mean_error = 0
 for current_point in plyTest.points:
     # Find current_point's 4 nearest neighbors
-    [k, idx, _] = plyGT_tree.search_knn_vector_3d(current_point, 3)
+    [k, idx, _] = plyGT_tree.search_knn_vector_3d(current_point, 2)
 
-    if k < 3:
+    if k < 2:
         sys.exit("ERR: Not enough points in ground-truth")
 
-    # Include current_point if its in grouth-truth
-    [n, _, _] = plyGT_tree.search_radius_vector_3d(current_point, 0.0001)
-    n = (1 if n>=1 else 0)
-
     # Compute distance to line
-    p0, p1 = np.asarray(plyGT.points)[idx[(1-n):3-n], :]
-    d = la.norm(np.cross(p1-p0, p0-current_point))/la.norm(p1-p0)
+    p0, p1 = np.asarray(plyGT.points)[idx[0:], :]
+    length = la.norm(p0-p1)
+    if length == 0:
+        d = la.norm(current_point-p0)
+    else:
+        t = max(0, min(1, np.dot(current_point-p0, p1-p0)/(length*length)))
+        p2 = p0+t*(p1-p0)
+        d = la.norm(current_point-p2)
     mean_error += d
 
 mean_error /= len(plyTest.points)
