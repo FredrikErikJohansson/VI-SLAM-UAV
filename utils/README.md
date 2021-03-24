@@ -32,7 +32,7 @@ ORB_SLAM3:
 
 ### Compute mean error of a pointcloud to its ground-truth
 Plane:
-* `./meanErrorPlane plyExample plyExampleGroundTruth`
+* `python3 ./meanErrorPlane.py plyExample plyExampleGroundTruth`
 
 Line:
-* `./meanErrorLine plyExample plyExampleGroundTruth`
+* `python3 ./meanErrorLine.py plyExample plyExampleGroundTruth`
