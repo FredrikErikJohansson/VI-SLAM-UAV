@@ -31,4 +31,8 @@ ORB_SLAM3:
 * `./procORB.sh /absolute/path/to/dataset example-video`
 
 ### Compute mean error of a pointcloud to its ground-truth
-* `./meanError plyExample plyExampleGroundTruth`
+Plane:
+* `python3 ./meanErrorPlane.py plyExample plyExampleGroundTruth`
+
+Line:
+* `python3 ./meanErrorLine.py plyExample plyExampleGroundTruth`
