@@ -2,9 +2,15 @@ import open3d as o3d
 import numpy as np
 from numpy import linalg as la
 import sys
+from csv import writer
 
 if len(sys.argv) != 3:
     sys.exit("ERR: Not enough input parameters\nUsage: ./meanError plyTest plyGroundTruth")   
+
+def append_list_as_row(file_name, list_of_elem):
+    with open(file_name, 'a+', newline='') as write_obj:
+        csv_writer = writer(write_obj)
+        csv_writer.writerow(list_of_elem)
 
 # Check for file-ending
 plyTestEnding = ""
@@ -21,6 +27,14 @@ elif sys.argv[2][len(sys.argv[2])-4] != '.':
 
 plyTest = o3d.io.read_point_cloud(sys.argv[1] + plyTestEnding)
 plyGT = o3d.io.read_point_cloud(sys.argv[2] + plyGTEnding)
+
+plyTest.paint_uniform_color([1, 0, 0])
+plyGT.paint_uniform_color([0, 1, 0])
+o3d.visualization.draw_geometries([plyTest, plyGT],
+                                      zoom=0.4459,
+                                      front=[0.9288, -0.2951, -0.2242],
+                                      lookat=[1.6784, 2.0612, 1.4451],
+                                      up=[-0.3402, -0.9189, -0.1996])
 
 print("Test:",plyTest)
 print("Ground-truth:",plyGT)
@@ -45,4 +59,8 @@ for current_point in plyTest.points:
     mean_error += d
 
 mean_error /= len(plyTest.points)
+
+row_contents = [len(plyTest.points), len(plyGT.points), mean_error]
+append_list_as_row('result.csv', row_contents)
+
 print("The mean error is:",mean_error)

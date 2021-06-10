@@ -2,14 +2,32 @@ import open3d as o3d
 import numpy as np
 import math 
 import copy
+import sys
+from csv import writer
 
-print("Load a ply point cloud, print it, and render it")
-source = o3d.io.read_point_cloud("./ORB_V101_mono.ply")
-target = o3d.io.read_point_cloud("./LDSO_V101_mono.ply")
+# Check for file-ending
+plyTestEnding = ""
+plyGTEnding = ""
+if len(sys.argv[1]) < 4:
+    plyTestEnding = ".ply"
+elif sys.argv[1][len(sys.argv[1])-4] != '.':
+    plyTestEnding = ".ply"
+
+if len(sys.argv[2]) < 4:
+    plyGTEnding = ".ply"
+elif sys.argv[2][len(sys.argv[2])-4] != '.':
+    plyGTEnding = ".ply"
+
+source = o3d.io.read_point_cloud(sys.argv[1] + plyTestEnding)
+target = o3d.io.read_point_cloud(sys.argv[2] + plyGTEnding)
 
 # Outlier removal
 target, ind = target.remove_statistical_outlier(nb_neighbors=20, std_ratio=2)
-source, ind = source.remove_statistical_outlier(nb_neighbors=20, std_ratio=2)
+
+def append_list_as_row(file_name, list_of_elem):
+    with open(file_name, 'a+', newline='') as write_obj:
+        csv_writer = writer(write_obj)
+        csv_writer.writerow(list_of_elem)
 
 def draw_registration_result(source, target, transformation):
     source_temp = copy.deepcopy(source)
@@ -49,15 +67,14 @@ trans_init = np.asarray([
     [0,1,0,0],
     [0,0,1,0],
     [0,0,0,1]])
+
 # Initial alignment here
-#source.scale(4, source.get_center())
-source.rotate(get_rot_mat('x', -math.pi/8), source.get_center())
-#source.rotate(get_rot_mat('y', -math.pi/2), source.get_center())
-#source.rotate(get_rot_mat('y', -math.pi/8), source.get_center())
-target.rotate(get_rot_mat('x', -math.pi/8), target.get_center())
+source.scale(4, source.get_center())
+source, ind = source.remove_statistical_outlier(nb_neighbors=1000, std_ratio=0.001)
+source.rotate(get_rot_mat('x', -math.pi/2), source.get_center())
+source.rotate(get_rot_mat('z', math.pi/2), source.get_center())
 
-
-draw_registration_result(source, target, trans_init)
+#draw_registration_result(source, target, trans_init)
 
 print("Initial alignment")
 evaluation = o3d.pipelines.registration.evaluate_registration(
@@ -68,11 +85,17 @@ print(evaluation)
 reg_p2p = o3d.pipelines.registration.registration_icp(
     source, target, threshold, trans_init,
     o3d.pipelines.registration.TransformationEstimationPointToPoint(with_scaling=True),
-    o3d.pipelines.registration.ICPConvergenceCriteria(max_iteration=2000))
+    o3d.pipelines.registration.ICPConvergenceCriteria(max_iteration=1000))
 print(reg_p2p)
 print("Transformation is:")
 print(reg_p2p.transformation)
-draw_registration_result(source, target, reg_p2p.transformation)
+#draw_registration_result(source, target, reg_p2p.transformation)
+
+source.transform(reg_p2p.transformation)
+
+append_list_as_row('result.csv', [sys.argv[1]])
+row_contents = [reg_p2p.fitness, reg_p2p.inlier_rmse]
+append_list_as_row('result.csv', row_contents)
 
 # Save as ply
 o3d.io.write_point_cloud("TARGET.ply", target)

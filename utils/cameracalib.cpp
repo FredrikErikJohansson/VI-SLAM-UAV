@@ -6,7 +6,7 @@
 #include <iostream>
 
 // Defining the dimensions of checkerboard
-int CHECKERBOARD[2]{6,9}; 
+int CHECKERBOARD[2]{6,8}; 
 
 int main() {
 	// Creating vector to store vectors of 3D points for each checkerboard image
@@ -26,7 +26,7 @@ int main() {
 	// Extracting path of individual image stored in a given directory
 	std::vector<cv::String> images;
 	// Path of the folder containing checkerboard images
-	std::string path = "/home/frejo/Master-thesis/datasets/DJI/images/sampled/*.jpg";
+	std::string path = "/home/frejo/Master-thesis/datasets/MavicAirCalib/rawConvertedCalib/*.png";
 
 	cv::glob(path, images);
 
@@ -53,18 +53,19 @@ int main() {
 			cv::TermCriteria criteria(CV_TERMCRIT_EPS | CV_TERMCRIT_ITER, 30, 0.001);
 			
 			// refining pixel coordinates for given 2d points.
-			cv::cornerSubPix(gray,corner_pts,cv::Size(11,11), cv::Size(-1,-1),criteria);
+			//cv::cornerSubPix(gray,corner_pts,cv::Size(11,11), cv::Size(-1,-1),criteria);
 			
 			// Displaying the detected corner points on the checker board
-			cv::drawChessboardCorners(frame, cv::Size(CHECKERBOARD[0], CHECKERBOARD[1]), corner_pts, success);
+			//cv::drawChessboardCorners(frame, cv::Size(CHECKERBOARD[0], CHECKERBOARD[1]), corner_pts, success);
 			
 			objpoints.push_back(objp);
 			imgpoints.push_back(corner_pts);
 		}
 		else std::cout << "Coulnt find corners" << std::endl;
 
-	cv::imshow("Image",frame);
-	cv::waitKey(0);
+	//cv::imshow("Image",frame);
+	//cv::waitKey(0);
+	std::cout << i << " / " << images.size()-1 << std::endl;
   	}
 
 	cv::destroyAllWindows();
